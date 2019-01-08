@@ -16,7 +16,7 @@ class ContactoController: UIViewController {
     
     @IBOutlet weak var tblContactos: UITableView!
 
-    var breeds = ["A": ["Affenpoo", "Affenpug", "Affenshire", "Affenwich", "Afghan Collie", "Afghan Hound"], "B": ["Bagle Hound", "Boxer"]]
+    var breeds = ["A": ["Alberto"], "B": ["Bereniuce"], "C": ["Carlos", "Claudia"], "F": ["Francisco"]]
     
     struct Objects {
         var sectionName : String!
@@ -27,7 +27,6 @@ class ContactoController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tblContactos.delegate = self
         tblContactos.dataSource = self
         tblContactos.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         
@@ -39,9 +38,10 @@ class ContactoController: UIViewController {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
     }
-    
-    
-    
+}
+
+extension ContactoController:  UITableViewDataSource
+{
     func numberOfSections(in tableView: UITableView) -> Int {
         return objectArray.count
     }
@@ -56,8 +56,7 @@ class ContactoController: UIViewController {
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return objectArray[section].sectionName
     }
-    
 }

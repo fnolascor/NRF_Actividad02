@@ -14,6 +14,9 @@
 		84AA647121E4E942001A3D08 /* NRF_Actividad02Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA647021E4E942001A3D08 /* NRF_Actividad02Tests.swift */; };
 		84AA647C21E4E942001A3D08 /* NRF_Actividad02UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA647B21E4E942001A3D08 /* NRF_Actividad02UITests.swift */; };
 		84AA648A21E4EAC6001A3D08 /* ContactoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA648921E4EAC6001A3D08 /* ContactoController.swift */; };
+		84AA648C21E5083B001A3D08 /* BaseDatos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA648B21E5083B001A3D08 /* BaseDatos.swift */; };
+		84AA648E21E508FD001A3D08 /* DescContactoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA648D21E508FD001A3D08 /* DescContactoController.swift */; };
+		84AA649021E50957001A3D08 /* Persona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA648F21E50957001A3D08 /* Persona.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		84AA647B21E4E942001A3D08 /* NRF_Actividad02UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRF_Actividad02UITests.swift; sourceTree = "<group>"; };
 		84AA647D21E4E942001A3D08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84AA648921E4EAC6001A3D08 /* ContactoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactoController.swift; sourceTree = "<group>"; };
+		84AA648B21E5083B001A3D08 /* BaseDatos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDatos.swift; sourceTree = "<group>"; };
+		84AA648D21E508FD001A3D08 /* DescContactoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescContactoController.swift; sourceTree = "<group>"; };
+		84AA648F21E50957001A3D08 /* Persona.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persona.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				84AA646221E4E942001A3D08 /* Assets.xcassets */,
 				84AA646421E4E942001A3D08 /* LaunchScreen.storyboard */,
 				84AA646721E4E942001A3D08 /* Info.plist */,
+				84AA648B21E5083B001A3D08 /* BaseDatos.swift */,
+				84AA648D21E508FD001A3D08 /* DescContactoController.swift */,
+				84AA648F21E50957001A3D08 /* Persona.swift */,
 			);
 			path = NRF_Actividad02;
 			sourceTree = "<group>";
@@ -257,6 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84AA648A21E4EAC6001A3D08 /* ContactoController.swift in Sources */,
+				84AA648E21E508FD001A3D08 /* DescContactoController.swift in Sources */,
+				84AA648C21E5083B001A3D08 /* BaseDatos.swift in Sources */,
+				84AA649021E50957001A3D08 /* Persona.swift in Sources */,
 				84AA645C21E4E941001A3D08 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
