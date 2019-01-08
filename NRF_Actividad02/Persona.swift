@@ -8,6 +8,14 @@
 
 import Foundation
 
+enum Parentesco: String {
+    case Familiar = "Familiar"
+    case Amigo = "Amigo"
+    case Conocido = "Conocido"
+    case Oficina = "Oficina"
+    case Ninguno = "Ninguno"
+}
+
 class Persona
 {
     var nombreCompleto: String = ""
@@ -15,14 +23,21 @@ class Persona
     var edad: Int = 0
     var domicilio: String = ""
     var correoElectrónico: String = ""
+    var parentesco: Parentesco = Parentesco.Ninguno
     
-    init(nombreCompleto: String, fechaNacimiento: String, domicilio: String, correoElectrónico: String)
+    init(nombreCompleto: String, fechaNacimiento: String, domicilio: String, correoElectrónico: String, parentesco: Parentesco)
     {
         self.nombreCompleto = nombreCompleto
         self.fechaNacimiento = fechaNacimiento
         self.domicilio = domicilio
         self.correoElectrónico = correoElectrónico
         self.edad = FuncionesGenericas.init().CalcularEdad(fechaNacimiento: fechaNacimiento)
+        self.parentesco = parentesco
+    }
+    
+    init(nombreCompleto: String)
+    {
+        self.nombreCompleto = nombreCompleto
     }
     
     func EdadPersona(fechaNacimiento: String) -> Int{
