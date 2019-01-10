@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DescContactoController: UIViewController {
     
@@ -28,22 +29,52 @@ class DescContactoController: UIViewController {
             print("Compartido")
         }
     }
+    @IBAction func btnGuardarContacto(_ sender: UIButton) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        contacto!.nombreCompleto = txtNombre.text
+        let formatoFecha = DateFormatter()
+        formatoFecha.dateFormat = "dd/MM/yyyy"
+        contacto!.fechaNacimiento = formatoFecha.string(from: dpvFechaNacimiento.date)
+        contacto!.correoElectronico = txtCorreoElectronico.text
+        contacto!.parentesco = txtParentesco.text
+        appDelegate.saveContext()
+    }
     
+    @IBAction func btnBorrarContacto(_ sender: UIButton) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let usersFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonaBD")
+        
+        do {
+            let fetchedUsers = try context.fetch(usersFetch) as! [PersonaBD]
+            for item in fetchedUsers{
+                if(item.nombreCompleto == contacto?.nombreCompleto)
+                {
+                    context.delete(item)
+                    
+                }
+            }
+            
+            appDelegate.saveContext()
+            
+            
+        } catch {
+            fatalError("Failed to fetch users: \(error)")
+        }
+    }
     
     var base: BaseDatos = BaseDatos()
-    var contacto: Persona?
+    var contacto: PersonaBD?
     var tempFechaCumpleaños: String?
     var tempFecha: Date?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        contacto = base.obtieneInfoPersona(persona: contacto!)
-        
         
         txtNombre.text = contacto?.nombreCompleto
-        txtCorreoElectronico.text = contacto?.correoElectrónico
-        txtParentesco.text = contacto?.parentesco.rawValue
+        txtCorreoElectronico.text = contacto?.correoElectronico
+        txtParentesco.text = contacto?.parentesco
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -85,13 +116,13 @@ class DescContactoController: UIViewController {
     }
 }
 
-extension String {
-    func substring(from: Int, to: Int) -> String {
-        let start = index(startIndex, offsetBy: from)
-        let end = index(start, offsetBy: to - from)
-        return String(self[start ..< end])
-    }
-}
+//extension String {
+//    func substring(from: Int, to: Int) -> String {
+//        let start = index(startIndex, offsetBy: from)
+//        let end = index(start, offsetBy: to - from)
+//        return String(self[start ..< end])
+//    }
+//}
 
 extension Date {
     var month: String {

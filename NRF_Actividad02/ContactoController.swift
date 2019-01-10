@@ -7,33 +7,50 @@
 //
 
 import UIKit
-import ContactsUI
+import CoreData
 
 class ContactoController: UIViewController {
     @IBOutlet weak var tblContactos: UITableView!
 
-    var contactos = ["R": ["Raymundo Jesús Sánchez Murillo"], "F": ["Francisco Nolasco Reyes"], "M": ["Miguel Osbaldo Gallardo Toledo"], "J": ["Jonatan Rebolledo Sánchez"]]
+    var contactos: Dictionary<String, Array<PersonaBD>> = [:]
+    //Dictionary<String, Array<String>>
     
-    //var contactos = ["Raymundo Jesús Sánchez Murillo", "Francisco Nolasco Reyes","Miguel Osbaldo Gallardo Toledo", "Jonatan Rebolledo Sánchez"]
+    //var contactos = [ "R":[ "Raymundo Jesús Sánchez Murillo"], "F": ["Francisco Nolasco Reyes"]]
     
     struct Objects {
         var sectionName : String!
-        var sectionObjects : [String]!
+        var sectionObjects : [PersonaBD]!
     }
-    var personaSeleccionada: Persona?
+    
+    var personaSeleccionada: PersonaBD?
     var objectArray = [Objects]()
+    var base: BaseDatos?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblContactos.dataSource = self
         tblContactos.delegate = self
         tblContactos.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        formatoContactos()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        formatoContactos()
+        tblContactos.reloadData()
+    }
+    
+    func formatoContactos()
+    {
+        base = BaseDatos()
+        let predicate = { (element: PersonaBD) in
+            return element.nombreCompleto?.substring(from: 0, to: 1)
+        }
+        let dictionary = Dictionary(grouping: base!.lstPersonas, by: predicate)
+        contactos = dictionary as! Dictionary<String, Array<PersonaBD>>
         
-        
-        // SORTING [SINCE A DICTIONARY IS AN UNSORTED LIST]
-        let sortedBreeds = contactos.sorted(by: { $0.0 < $1.0 })
-        for (key, value) in sortedBreeds {
-            print("\(key) -> \(value)")
+        //let sortedBreeds = contactos.sorted(by: { $0.0 < $1.0 })
+        objectArray = [Objects]()
+        for (key, value) in contactos {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
     }
@@ -45,9 +62,7 @@ class ContactoController: UIViewController {
                 vcd.contacto = self.personaSeleccionada
             }
         }
-
     }
-    
 }
 
 extension ContactoController:  UITableViewDataSource
@@ -62,7 +77,7 @@ extension ContactoController:  UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row]
+        cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].nombreCompleto
         return cell
     }
     
@@ -76,10 +91,26 @@ extension ContactoController: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let currentCell = tableView.cellForRow(at: indexPath)
-        //personaSeleccionada = Persona.init(nombreCompleto: currentCell!.textLabel!.text!)
-        self.personaSeleccionada = Persona(nombreCompleto: (currentCell?.textLabel?.text)!)
+        
+        for persona in (base?.lstPersonas)!
+        {
+            if(persona.nombreCompleto == currentCell?.textLabel?.text)
+            {
+                self.personaSeleccionada = persona
+            }
+        }
+        
+        //self.personaSeleccionada = Persona(nombreCompleto: (currentCell?.textLabel?.text)!)
         performSegue(withIdentifier: "idContacto", sender: nil)
     }
     
 
+}
+
+extension String {
+    func substring(from: Int, to: Int) -> String {
+        let start = index(startIndex, offsetBy: from)
+        let end = index(start, offsetBy: to - from)
+        return String(self[start ..< end])
+    }
 }
