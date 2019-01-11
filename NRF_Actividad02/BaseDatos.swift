@@ -30,56 +30,65 @@ struct BaseDatos
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
 //
-//        var user = PersonaBD(context: context)
-//        user.nombreCompleto = "Francisco Nolasco Reyes"
-//        user.fechaNacimiento = "09/06/1989"
-//        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
-//        user.correoElectronico = "nolascorf@gmail.com"
-//        user.parentesco = "Amigo"
-//
-//        appDelegate.saveContext()
-//
-//        user = PersonaBD(context: context)
-//        user.nombreCompleto = "Raymundo Jesús Sánchez Murillo"
-//        user.fechaNacimiento = "10/08/1990"
-//        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
-//        user.correoElectronico = "rjsanchez@gmail.com"
-//        user.parentesco = "Amigo"
-//
-//        appDelegate.saveContext()
-//
-//        user = PersonaBD(context: context)
-//        user.nombreCompleto = "Jonatan Rebolledo Sánchez"
-//        user.fechaNacimiento = "25/05/1990"
-//        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
-//        user.correoElectronico = "jhonysanxlatino@gmail.com"
-//        user.parentesco = "Conocido"
-//
-//        appDelegate.saveContext()
-//
-//        user = PersonaBD(context: context)
-//        user.nombreCompleto = "Miguel Osbaldo Gallardo Toledo"
-//        user.fechaNacimiento = "25/07/1991"
-//        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
-//        user.correoElectronico = "mosbald91@gmail.com"
-//        user.parentesco = "Amigo"
-//
-//        appDelegate.saveContext()
+        var user = PersonaBD(context: context)
+        user.nombreCompleto = "Francisco Nolasco Reyes"
+        user.fechaNacimiento = "09/06/1989"
+        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
+        user.correoElectronico = "nolascorf@gmail.com"
+        user.parentesco = "Amigo"
+
+        appDelegate.saveContext()
+
+        user = PersonaBD(context: context)
+        user.nombreCompleto = "Raymundo Jesús Sánchez Murillo"
+        user.fechaNacimiento = "10/08/1990"
+        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
+        user.correoElectronico = "rjsanchez@gmail.com"
+        user.parentesco = "Amigo"
+
+        appDelegate.saveContext()
+
+        user = PersonaBD(context: context)
+        user.nombreCompleto = "Jonatan Rebolledo Sánchez"
+        user.fechaNacimiento = "25/05/1990"
+        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
+        user.correoElectronico = "jhonysanxlatino@gmail.com"
+        user.parentesco = "Conocido"
+
+        appDelegate.saveContext()
+
+        user = PersonaBD(context: context)
+        user.nombreCompleto = "Miguel Osbaldo Gallardo Toledo"
+        user.fechaNacimiento = "25/07/1991"
+        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
+        user.correoElectronico = "mosbald91@gmail.com"
+        user.parentesco = "Amigo"
+
+        appDelegate.saveContext()
         
-        let usersFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonaBD")
-
-        do {
-            let fetchedUsers = try context.fetch(usersFetch) as! [PersonaBD]
-
-            //print(type(of:fetchedUsers))
-            for item in fetchedUsers{
-                lstPersonas.append(item)
-            }
-
-
-        } catch {
-            fatalError("Failed to fetch users: \(error)")
-        }
+        user = PersonaBD(context: context)
+        user.nombreCompleto = "Rogelio López Gómez"
+        user.fechaNacimiento = "25/07/1991"
+        user.domicilio = "Ocaso 43, Insurgentes Cuicuilco, CDMX"
+        user.correoElectronico = "mosbald91@gmail.com"
+        user.parentesco = "Amigo"
+        
+        appDelegate.saveContext()
+        
+//        let usersFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PersonaBD")
+//
+//        do {
+//            let fetchedUsers = try context.fetch(usersFetch) as! [PersonaBD]
+//
+//            //print(type(of:fetchedUsers))
+//            for item in fetchedUsers{
+//                lstPersonas.append(item)
+//            }
+//
+//
+//        } catch {
+//            fatalError("Failed to fetch users: \(error)")
+//        }
         
     }
     

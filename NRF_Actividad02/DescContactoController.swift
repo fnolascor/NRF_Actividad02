@@ -52,12 +52,11 @@ class DescContactoController: UIViewController {
                 if(item.nombreCompleto == contacto?.nombreCompleto)
                 {
                     context.delete(item)
-                    
                 }
             }
             
             appDelegate.saveContext()
-            
+            self.dismiss(animated: true, completion: nil)
             
         } catch {
             fatalError("Failed to fetch users: \(error)")
